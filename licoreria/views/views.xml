@@ -1,0 +1,189 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="licoreria.categoria_tree">
+      <field name="name">Licoreria/Categoria Tree</field>
+      <field name="model">licoreria.categoria</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="description"/>
+          <field name="tipo"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="licoreria.categoria_form">
+      <field name="name">Licoreria/Categoria Form</field>
+      <field name="model">licoreria.categoria</field>
+      <field name="arch" type="xml">
+        <form>
+          <group colspan="2" col="2">
+            <field name="name"/>
+            <field name="description"/>
+            <field name="tipo"/>
+            <field name="bebidas" >
+              <tree>
+                <field name="name"/>
+                <field name="precio"/>
+                <field name="grados"/>
+              </tree>
+            </field>
+          </group>
+        </form>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="licoreria.bebida_tree">
+      <field name="name">Licoreria/Bebida Tree</field>
+      <field name="model">licoreria.bebida</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="precio"/>
+          <field name="grados"/>
+          <field name="ejemplares"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="licoreria.bebida_form">
+      <field name="name">Licoreria/Bebida Form</field>
+      <field name="model">licoreria.bebida</field>
+      <field name="arch" type="xml">
+        <form>
+          <group colspan="2" col="2">
+            <field name="name"/>
+            <field name="precio"/>
+            <field name="grados"/>
+            <field name="ejemplares"/>
+            <field name="categoria"/>
+            <field name="importetotal"/>
+          </group>
+        </form>
+      </field>
+    </record>
+
+    <record id="partner_kanban_view" model="ir.ui.view">
+            <field name="name">Vista kanban</field>
+            <field name="model">licoreria.categoria</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban">
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="tipo"/>
+                    <templates>
+                    <t t-name="kanban-box">
+                            <div class="o_res_partner_kanban_click">
+                                <a type="open">
+                                    <img class="o_res_kanban_image"
+                                        t-att-src="kanban_image('your_model', 'image', record.id.value)" />
+                                </a>
+                                <div class="o_res_product_desc">
+                                    <h4>
+                                        <a type="edit">
+                                            <field name="name"></field>
+                                        </a>
+                                    </h4>
+                                    <ul>
+                                        <field name="description"></field>
+                                        <field name="tipo"></field>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+    <record model="ir.ui.view" id="licoreria.bebida_search">
+      <field name="name">licoreria.bebida.search</field>
+      <field name="model">licoreria.bebida</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name" string="Titulo"/>
+          <field name="categoria" string="Categoria"/>
+          <filter name="Baratos" domain="[('precio','&lt;',5)]"/>
+        </search>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="licoreria.categoria_action_window">
+      <field name="name">Categoria</field>
+      <field name="res_model">licoreria.categoria</field>
+      <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="licoreria.bebida_action_window">
+      <field name="name">Bebida</field>
+      <field name="res_model">licoreria.bebida</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Licoreria" id="licoreria.menu_root"/>
+
+    <menuitem name="Categorias" id="licoreria.categoria_menu" parent="licoreria.menu_root" action="licoreria.categoria_action_window"/>
+    <menuitem name="Bebidas" id="licoreria.bebida_menu" parent="licoreria.menu_root" action="licoreria.bebida_action_window"/>
+
+
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="licoreria.list">
+      <field name="name">licoreria list</field>
+      <field name="model">licoreria.licoreria</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="licoreria.action_window">
+      <field name="name">licoreria window</field>
+      <field name="res_model">licoreria.licoreria</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="licoreria.action_server">
+      <field name="name">licoreria server</field>
+      <field name="model_id" ref="model_licoreria_licoreria"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="licoreria" id="licoreria.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="licoreria.menu_1" parent="licoreria.menu_root"/>
+    <menuitem name="Menu 2" id="licoreria.menu_2" parent="licoreria.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="licoreria.menu_1_list" parent="licoreria.menu_1"
+              action="licoreria.action_window"/>
+    <menuitem name="Server to list" id="licoreria" parent="licoreria.menu_2"
+              action="licoreria.action_server"/>
+-->
+  </data>
+</odoo>

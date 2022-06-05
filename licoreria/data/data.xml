@@ -1,0 +1,45 @@
+<odoo>
+	<data>
+		<record model="licoreria.categoria">
+			<field name="name">Ron</field>
+			<field name="description">La bebida de los Piratas</field>
+		</record>
+		<record model="licoreria.categoria">
+			<field name="name">Vodka</field>
+			<field name="description">La bebida que desayunan los rusos</field>
+		</record>
+		<record model="licoreria.categoria">
+			<field name="name">Ginebra</field>
+			<field name="description">La bebida de los amantes al rock</field>
+		</record>
+		<record model="licoreria.bebida">
+			<field name="name">Eristoff</field>
+			<field name="precio">6.99</field>
+			<field name="grados">35</field>
+			<field name="ejemplares">50</field>
+			<field name="categoria">2</field>
+		</record>
+		<record model="licoreria.bebida">
+			<field name="name">Barcelo</field>
+			<field name="precio">13.50</field>
+			<field name="grados">45</field>
+			<field name="ejemplares">80</field>
+			<field name="categoria">1</field>
+		</record>
+		<record model="licoreria.bebida">
+			<field name="name">Kolroft</field>
+			<field name="precio">4.66</field>
+			<field name="grados">41</field>
+			<field name="ejemplares">80</field>
+			<field name="categoria">2</field>
+
+		</record>
+		<record model="licoreria.bebida">
+			<field name="name">Negrita</field>
+			<field name="precio">5.86</field>
+			<field name="grados">48</field>
+			<field name="ejemplares">66</field>
+			<field name="categoria">1</field>
+		</record>
+	</data>
+</odoo>
